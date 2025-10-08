@@ -42,7 +42,7 @@ const EditPerson = () => {
                     {person && !chargement && !error &&
                     (<Col>
                         <h2 className='text-center my-3'>Modifier {person.firstname} {person.lastname}</h2>
-                        <PersonForm buttonText={"Enregistrer les modifications"} person={person} />
+                        <PersonForm buttonText={"Enregistrer les modifications"} person={person} action={"update"} />
                     </Col>)
                     }
                 </Row>
