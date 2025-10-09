@@ -7,7 +7,8 @@ const PersonList = () => {
     const [personList, setPersonList] = useState(null);
     const [chargement, setChargement] = useState(false);
     const [error, setError] = useState(null);
-    
+    const [deleted, setDeleted] = useState([]);
+
     const getAll = () => {
         setChargement(true);
         setError(null);
@@ -33,32 +34,37 @@ const PersonList = () => {
                 <Table className='mx-auto' striped hover size="xl">
                     <thead>
                         <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Actions</th>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                    {chargement && (
-                        <tr className='spinner-container'>
-                            <td className='spinner'></td>
-                            <td>Chargement ...</td>
-                            <td>Chargement ...</td>
-                            <td className='spinner'></td>
-                        </tr>
-                    )}
-                    {error && (
-                        <tr>
-                            <td className='fw-bold' colSpan={4}>{error}</td>
-                        </tr>
-                    )}
-                    {personList && !chargement && !error && personList.map(person =>
-                    (<tr key={person.id} className='my-1'>
-                        <PersonLine theperson={person} id={person.id} />
-                    </tr>)
-                    )}
+                        {chargement && (
+                            <tr className='spinner-container'>
+                                <td className='spinner'></td>
+                                <td>Chargement ...</td>
+                                <td>Chargement ...</td>
+                                <td className='spinner'></td>
+                            </tr>
+                        )}
+                        {error && (
+                            <tr>
+                                <td className='fw-bold' colSpan={4}>{error}</td>
+                            </tr>
+                        )}
+                        {personList && !chargement && !error && personList.map(person => {
+                            if (!deleted.includes(person.id)) {
+                                return (
+                                    <tr key={person.id} className='my-1'>
+                                        <PersonLine theperson={person} id={person.id} handleDeletion={setDeleted} />
+                                    </tr>
+                                )
+                            }
+                        }
+                        )}
                     </tbody>
                 </Table>
             </Container>

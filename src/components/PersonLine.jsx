@@ -18,6 +18,9 @@ const PersonLine = (props) => {
         let deleteValidation = confirm("Êtes-vous sûr de vouloir supprimer cette personne de la liste ?")
         if (confirm("Êtes-vous sûr de vouloir supprimer cette personne de la liste ?")) {
             personService.delete(props.id)
+                .then(() => {
+                    props.handleDeletion((deleted) => [...deleted, props.id])
+                })
                 .catch(erreur => {
                     console.log(erreur);
                     setError("Erreur lors du chargement de la suppression de la personne !")

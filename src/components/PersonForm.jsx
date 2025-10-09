@@ -32,7 +32,9 @@ const PersonForm = (props) => {
           setError("Erreur lors de la mis à jour de la personne !")
         })
         .finally(() => { 
-          if (updatedPerson === null) { setError("Erreur du chargement de la mis à jour !")}
+          if (updatedPerson === null) {
+            setError("Erreur du chargement de la mis à jour !")
+          } else { location.replace("/persons")}
         });
     } else if (props.action === "create") {
       personService.create(personData)
@@ -44,9 +46,11 @@ const PersonForm = (props) => {
           setError("Erreur lors de la création de la personne !")
         })
         .finally(() => { 
-          if (updatedPerson === null) { setError("Erreur du chargement de la personne créée !")}
+          if (updatedPerson === null) {
+            setError("Erreur du chargement de la personne créée !")
+          } else { location.replace("/persons") }
         });
-    }
+    } else { setError("Action non reconnue !")}
   }
 
   return (
@@ -60,12 +64,12 @@ const PersonForm = (props) => {
         </Form.Group>)}
         <Form.Group className='mb-2' controlId='firstname'>
           <Form.Label className='fw-bold'>Prénom *</Form.Label>
-          <Form.Control type="text" defaultValue={props.person.firstname} required minLength={2} maxLength={50} />
+          <Form.Control type="text" defaultValue={props?.person?.firstname} required minLength={2} maxLength={50} />
           <Form.Control.Feedback type="invalid">Un prénom est attendue (au moins deux caractères).</Form.Control.Feedback>
         </Form.Group>
         <Form.Group className='mb-2' controlId='lastname'>
           <Form.Label className='fw-bold'>Nom *</Form.Label>
-          <Form.Control type="text" defaultValue={props.person.lastname} required minLength={2} maxLength={50} />
+          <Form.Control type="text" defaultValue={props?.person?.lastname} required minLength={2} maxLength={50} />
           <Form.Control.Feedback type="invalid">Un nom est attendue (au moins deux caractères).</Form.Control.Feedback>
         </Form.Group>
         <Button variant='success' className='text-center' type='submit'>{props.buttonText}</Button>

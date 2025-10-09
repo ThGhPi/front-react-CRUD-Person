@@ -9,9 +9,11 @@ const Header = () => {
                 <Container fluid>
                     <Row>
                         <Col md={12}>
+                        <Nav.Link as={NavLink} to="/">
                             <h1 className="text-light" style={{ marginLeft: "10px", fontSize: "2rem" }}>
                                 Gestion Personnes
                             </h1>
+                        </Nav.Link>
                         </Col>
                     </Row>
                     <br />
