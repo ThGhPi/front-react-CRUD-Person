@@ -7,14 +7,14 @@ const EditPerson = () => {
     const [person, setPerson] = useState(null);
     const [chargement, setChargement] = useState(false);
     const [error, setError] = useState(null);
-    
+
     const getPerson = () => {
         let personId = Number(location.pathname.split(":")[1]);
         setChargement(true);
         setError(null);
         PersonDataService.get(personId)
             .then(response => {
-                setPerson({...response.data})
+                setPerson({ ...response.data })
             })
             .catch(erreur => {
                 console.log(erreur);
@@ -24,8 +24,8 @@ const EditPerson = () => {
     }
 
     useEffect(() => getPerson(), []);
-  return (
-    <>
+    return (
+        <>
             <Container className='bg-dark-subtle' fluid="xxl" style={{ padding: 0 }}>
                 <Row>
                     {chargement && (
@@ -40,15 +40,15 @@ const EditPerson = () => {
                         </div>
                     )}
                     {person && !chargement && !error &&
-                    (<Col>
-                        <h2 className='text-center my-3'>Modifier {person.firstname} {person.lastname}</h2>
-                        <PersonForm buttonText={"Enregistrer les modifications"} person={person} action={"update"} />
-                    </Col>)
+                        (<Col>
+                            <h2 className='text-center my-3'>Modifier {person.firstname} {person.lastname}</h2>
+                            <PersonForm buttonText={"Enregistrer les modifications"} person={person} action={"update"} />
+                        </Col>)
                     }
                 </Row>
             </Container>
-    </>
-  )
+        </>
+    )
 }
 
 export default EditPerson

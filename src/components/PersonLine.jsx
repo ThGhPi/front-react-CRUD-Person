@@ -34,7 +34,7 @@ const PersonLine = (props) => {
         <td>{props.theperson.id}</td>
         <td>{props.theperson.firstname}</td>
         <td>{props.theperson.lastname}</td>
-        <td className='d-flex'>
+        <td width={500}>
             <Button className='mx-2' variant='success' onClick={loadEdit}><FaPenFancy /></Button>
             {chargement && (
                 <div className='spinner-container'>
@@ -43,7 +43,7 @@ const PersonLine = (props) => {
             {!chargement && (
                 <Button variant='outline-danger' onClick={handleDelete}><FaTrashCan /></Button>
             )}
-            {error && (<p>{error}</p>)}
+            {error && (<p className='my-2'>{error}</p>)}
         </td>
     </>
   )

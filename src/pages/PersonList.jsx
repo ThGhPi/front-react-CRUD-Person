@@ -43,11 +43,11 @@ const PersonList = () => {
                     <tbody>
 
                         {chargement && (
-                            <tr className='spinner-container'>
-                                <td className='spinner'></td>
+                            <tr>
+                                <td className='spinner-container'><div className='spinner'></div></td>
                                 <td>Chargement ...</td>
                                 <td>Chargement ...</td>
-                                <td className='spinner'></td>
+                                <td className='spinner-container'><div className='spinner'></div></td>
                             </tr>
                         )}
                         {error && (
